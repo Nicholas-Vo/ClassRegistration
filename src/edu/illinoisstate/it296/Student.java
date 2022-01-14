@@ -14,11 +14,24 @@ public class Student extends User {
     /**
      * Creates a new Student with the given username, course list, and GPA.
      */
-    public Student(String username, Set<Course> courses) {
+    public Student(String username) {
         super(username);
-        this.courses = courses;
-        this.gpa = gpa; // todo remove?
     }
+
+    /**
+     * Add a new course to the Student's course list
+     */
+    public void addCourse(Course course) {
+        if (course == null) {
+            return;
+        }
+        courses.add(course);
+    }
+
+    /**
+     * Sets the Student's GPA.
+     */
+    public void setGPA(double gpa) { this.gpa = gpa; }
 
     /**
      * Gets the Student's GPA.
