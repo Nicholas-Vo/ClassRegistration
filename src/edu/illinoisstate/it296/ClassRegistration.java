@@ -1,6 +1,8 @@
 package edu.illinoisstate.it296;
 
 import edu.illinoisstate.it296.commands.AddCourse;
+import edu.illinoisstate.it296.commands.DisplayMenu;
+import edu.illinoisstate.it296.commands.ListCourses;
 
 import java.util.*;
 
@@ -8,37 +10,72 @@ import java.util.*;
 public class ClassRegistration {
     private final List<ProgramCommand> commands = new ArrayList<>();
     private final Map<String, Student> studentMap = new HashMap<>();
+    boolean shouldRun = true;
 
     public void execute() {
-        Scanner scanner = new Scanner(System.in);
         commands.add(new AddCourse(this));
+        commands.add(new ListCourses(this));
+        commands.add(new DisplayMenu(this));
+
+        new CourseHandler(); // initialize courses
 
         System.out.println("Enter your username: ");
 
-        String input = scanner.next();
+        Scanner scanner = new Scanner(System.in);
+        String username = scanner.next();
 
-        if (!Security.validateUsername(input)) {
+        if (!Security.isValidUsername(username)) {
             System.out.println("Please enter a valid username.");
             return;
         }
 
-        getStudent(input);
-        displayProgramMenu();
+        System.out.println("Enter your GPA: ");
+        double gpa = Security.validateGPA(scanner.next());
 
-        commands.forEach(cmd -> {
-            if (scanner.next().equalsIgnoreCase(cmd.getName())) {
-                cmd.execute();
+        if (gpa < 0 || gpa > 4.0) {
+            System.out.println("Please enter a valid GPA.");
+            return;
+        }
+
+        if (!Security.isValidUsername(username)) {
+            System.out.println("Please enter a valid username.");
+            return;
+        }
+
+        Student user = getStudent(username);
+        user.setGPA(gpa);
+
+        displayProgramMenu(user);
+
+        String[] params = gatherParams(scanner);
+
+        while (shouldRun) {
+            for (ProgramCommand cmd : commands) {
+                if (params[0].equalsIgnoreCase(cmd.getName())) {
+                    cmd.execute(user, Arrays.copyOfRange(params, 1, params.length));
+                }
             }
-        });
+
+            params = gatherParams(scanner);
+        }
+
     }
 
-    public void displayProgramMenu() {
-        commands.forEach(cmd -> System.out.println(cmd.description()));
+    private String[] gatherParams(Scanner scanner) {
+        String[] params;
+        String nextLine = scanner.nextLine();
+        params = nextLine.split(" ", 25);
+        return params;
     }
 
-    public void getStudent(String username) {
+    public void displayProgramMenu(User user) {
+        System.out.println("------ " + user.getUsername() + "'s Class Registration ------");
+        commands.forEach(cmd -> System.out.println("> " + cmd.description()));
+    }
+
+    public Student getStudent(String username) {
         studentMap.putIfAbsent(username, new Student(username));
-        studentMap.get(username);
+        return studentMap.get(username);
     }
 
 }

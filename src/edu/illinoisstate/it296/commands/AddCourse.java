@@ -1,11 +1,9 @@
 package edu.illinoisstate.it296.commands;
 
-import edu.illinoisstate.it296.ClassRegistration;
-import edu.illinoisstate.it296.Course;
-import edu.illinoisstate.it296.ProgramCommand;
-import edu.illinoisstate.it296.Student;
+import edu.illinoisstate.it296.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class AddCourse extends ProgramCommand {
@@ -15,20 +13,31 @@ public class AddCourse extends ProgramCommand {
     }
 
     @Override
-    public void execute() {
-        Set<Course> courses = new HashSet<>();
-        courses.add(new Course("Secure Software", "IT355", 3, 2.0));
+    public void execute(User user, String[] params) {
+        Student student = program.getStudent(user.getUsername());
+        CourseHandler handler = new CourseHandler();
 
-        Student nick = new Student("nevoss", courses);
+        if (params.length == 0) {
+            System.out.println("Command usage: add <courseID>");
+            return;
+        }
 
-        Course theCourse = new Course("Data Structures & Algorithms", "IT279", 3, 2.0);
+        String courseID = params[0];
 
-        if (!canAddCourse(nick, theCourse)) {
+        if (handler.getCourseByID(courseID.toLowerCase()) == null) {
+            System.out.println(courseID + " is not a valid course.");
+            return;
+        }
+
+        Course theCourse = handler.getCourseByID(courseID);
+
+        if (!canAddCourse(student, theCourse)) {
             System.out.println("Sorry, you cannot add that course.");
             return;
         }
 
-        nick.addCourse(theCourse);
+        student.addCourse(theCourse);
+        System.out.println("Successfully added " + theCourse.getID() + " to your course list.");
     }
 
     /**
@@ -46,6 +55,6 @@ public class AddCourse extends ProgramCommand {
 
     @Override
     public String description() {
-        return "register for a new course";
+        return "add <courseID> - register for a new course";
     }
 }

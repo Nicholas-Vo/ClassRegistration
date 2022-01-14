@@ -8,8 +8,8 @@ import java.util.Set;
  * A student can be enrolled in many courses.
  */
 public class Student extends User {
-    private Set<Course> courses = new HashSet<>();
-    private double gpa;
+    private final Set<Course> courses = new HashSet<>();
+    private double gpa = 0;
 
     /**
      * Creates a new Student with the given username, course list, and GPA.

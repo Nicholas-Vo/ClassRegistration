@@ -5,7 +5,7 @@ package edu.illinoisstate.it296;
  */
 public class Course {
     private final String name;
-    private final String courseID;
+    private final String id;
     private final double gpaRequirement;
     private final double creditHours;
 
@@ -13,9 +13,9 @@ public class Course {
     /**
      * Creates a new Course with the given name, courseID, and credit hours.
      */
-    public Course(String name, String courseID, double creditHours, double gpaRequirement) {
+    public Course(String name, String id, double creditHours, double gpaRequirement) {
         this.name = name;
-        this.courseID = courseID;
+        this.id = id;
         this.creditHours = creditHours;
         this.gpaRequirement = gpaRequirement;
     }
@@ -32,8 +32,8 @@ public class Course {
      * Gets the Course's courseID.
      * @return this Course's course ID.
      */
-    public String getCourseID() {
-        return courseID;
+    public String getID() {
+        return id;
     }
 
     /**

@@ -1,11 +1,9 @@
 package edu.illinoisstate.it296.commands;
 
-import edu.illinoisstate.it296.ClassRegistration;
-import edu.illinoisstate.it296.Course;
-import edu.illinoisstate.it296.ProgramCommand;
-import edu.illinoisstate.it296.Student;
+import edu.illinoisstate.it296.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ListCourses extends ProgramCommand {
@@ -15,12 +13,23 @@ public class ListCourses extends ProgramCommand {
     }
 
     @Override
-    public void execute() {
-        Student theStudent = program.
+    public void execute(User user, String[] params) {
+        Student student = program.getStudent(user.getUsername());
+
+        if (student.getCourses().size() < 1) {
+            System.out.println("You aren't enrolled in any courses.");
+            return;
+        }
+
+        for (Course course : student.getCourses()) {
+            System.out.println("Course: " + course.getID() + " - " + course.getName()
+                    + "\nCredit hours: " + course.getCreditHours());
+        }
+
     }
 
     @Override
     public String description() {
-        return "list courses you're currently enrolled in";
+        return "list - display courses you're currently enrolled in";
     }
 }
