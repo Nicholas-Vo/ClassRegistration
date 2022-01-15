@@ -1,4 +1,4 @@
-package edu.illinoisstate.it296;
+package edu.illinoisstate.it296.utils;
 
 public class Security {
 

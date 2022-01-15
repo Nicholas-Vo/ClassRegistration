@@ -1,10 +1,7 @@
 package edu.illinoisstate.it296.commands;
 
 import edu.illinoisstate.it296.*;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import edu.illinoisstate.it296.utils.CourseHandler;
 
 public class AddCourse extends ProgramCommand {
 
@@ -31,26 +28,18 @@ public class AddCourse extends ProgramCommand {
 
         Course theCourse = handler.getCourseByID(courseID);
 
-        if (!canAddCourse(student, theCourse)) {
+        if (student.enrolledIn(theCourse)) {
+            System.out.println("You're already enrolled in " + theCourse.getID().toUpperCase());
+            return;
+        }
+
+        if (student.getGPA() < theCourse.getGpaReq()) {
             System.out.println("Sorry, you cannot add that course.");
             return;
         }
 
         student.addCourse(theCourse);
         System.out.println("Successfully added " + theCourse.getID() + " to your course list.");
-    }
-
-    /**
-     * Determine if the Student has a valid GPA for the course
-     *
-     * @return boolean value
-     */
-    private boolean canAddCourse(Student nick, Course course) {
-        if (course == null) {
-            return false;
-        }
-
-        return nick.getGPA() >= course.getGpaRequirement();
     }
 
     @Override

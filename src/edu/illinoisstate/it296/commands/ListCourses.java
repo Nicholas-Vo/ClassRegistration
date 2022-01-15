@@ -16,16 +16,16 @@ public class ListCourses extends ProgramCommand {
     public void execute(User user, String[] params) {
         Student student = program.getStudent(user.getUsername());
 
-        if (student.getCourses().size() < 1) {
+        if (!student.inAnyCourse()) {
             System.out.println("You aren't enrolled in any courses.");
             return;
         }
 
-        for (Course course : student.getCourses()) {
-            System.out.println("Course: " + course.getID() + " - " + course.getName()
-                    + "\nCredit hours: " + course.getCreditHours());
-        }
+        int courses = student.getCourses().size();
+        String enrolledIn = courses == 1 ? "one course:" : courses + " courses:";
 
+        System.out.println("You are enrolled in " + enrolledIn);
+        student.getCourses().forEach(course -> System.out.println("\n" + course.toString()));
     }
 
     @Override

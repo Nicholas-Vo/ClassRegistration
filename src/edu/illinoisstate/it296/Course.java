@@ -9,7 +9,6 @@ public class Course {
     private final double gpaRequirement;
     private final double creditHours;
 
-
     /**
      * Creates a new Course with the given name, courseID, and credit hours.
      */
@@ -40,7 +39,7 @@ public class Course {
      * Gets the Course's GPA requirement to enroll.
      * @return this Course's GPA requirement.
      */
-    public double getGpaRequirement() {
+    public double getGpaReq() {
         return gpaRequirement;
     }
 
@@ -48,8 +47,15 @@ public class Course {
      * Gets the Course's credit hours.
      * @return this Course's credit hours.
      */
-    public double getCreditHours() {
+    public double getCredits() {
         return creditHours;
     }
 
+    /**
+     * Get the course in String form.
+     * @return the course in String form.
+     */
+    public String toString() {
+        return id + " - " + name + "\nCredit hours: " + creditHours;
+    }
 }

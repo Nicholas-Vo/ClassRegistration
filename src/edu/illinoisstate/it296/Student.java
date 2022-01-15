@@ -21,12 +21,12 @@ public class Student extends User {
     /**
      * Add a new course to the Student's course list
      */
-    public void addCourse(Course course) {
-        if (course == null) {
-            return;
-        }
-        courses.add(course);
-    }
+    public void addCourse(Course course) { courses.add(course); }
+
+    /**
+     * Remove a course from the Student's course list
+     */
+    public void removeCourse(Course course) { courses.remove(course); }
 
     /**
      * Sets the Student's GPA.
@@ -50,5 +50,7 @@ public class Student extends User {
      * @return a boolean.
      */
     public boolean inAnyCourse() { return courses.size() > 0; }
+
+    public boolean enrolledIn(Course course) { return courses.contains(course); }
 
 }

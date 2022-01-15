@@ -1,4 +1,6 @@
-package edu.illinoisstate.it296;
+package edu.illinoisstate.it296.utils;
+
+import edu.illinoisstate.it296.Course;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +15,7 @@ public class CourseHandler {
     }
 
     public Course getCourseByID(String courseID) {
-        return map.get(courseID);
+        return map.get(courseID.toLowerCase());
     }
 
 }

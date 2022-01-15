@@ -3,6 +3,9 @@ package edu.illinoisstate.it296;
 import edu.illinoisstate.it296.commands.AddCourse;
 import edu.illinoisstate.it296.commands.DisplayMenu;
 import edu.illinoisstate.it296.commands.ListCourses;
+import edu.illinoisstate.it296.commands.RemoveCourse;
+import edu.illinoisstate.it296.utils.CourseHandler;
+import edu.illinoisstate.it296.utils.Security;
 
 import java.util.*;
 
@@ -16,6 +19,7 @@ public class ClassRegistration {
         commands.add(new AddCourse(this));
         commands.add(new ListCourses(this));
         commands.add(new DisplayMenu(this));
+        commands.add(new RemoveCourse(this));
 
         new CourseHandler(); // initialize courses
 
@@ -69,7 +73,7 @@ public class ClassRegistration {
     }
 
     public void displayProgramMenu(User user) {
-        System.out.println("------ " + user.getUsername() + "'s Class Registration ------");
+        System.out.println("------ " + "Class Registration for " + user.getUsername() + " ------");
         commands.forEach(cmd -> System.out.println("> " + cmd.description()));
     }
 
