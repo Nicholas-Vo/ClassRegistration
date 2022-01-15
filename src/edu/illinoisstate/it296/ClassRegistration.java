@@ -13,6 +13,7 @@ import java.util.*;
 public class ClassRegistration {
     private final List<ProgramCommand> commands = new ArrayList<>();
     private final Map<String, Student> studentMap = new HashMap<>();
+    private final CourseHandler handler = new CourseHandler();
     boolean shouldRun = true;
 
     public void execute() {
@@ -20,8 +21,6 @@ public class ClassRegistration {
         commands.add(new ListCourses(this));
         commands.add(new DisplayMenu(this));
         commands.add(new RemoveCourse(this));
-
-        new CourseHandler(); // initialize courses
 
         System.out.println("Enter your username: ");
 
@@ -71,6 +70,8 @@ public class ClassRegistration {
         params = nextLine.split(" ", 25);
         return params;
     }
+
+    public CourseHandler getCourseHandler() {return handler; }
 
     public void displayProgramMenu(User user) {
         System.out.println("------ " + "Class Registration for " + user.getUsername() + " ------");

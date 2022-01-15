@@ -15,7 +15,7 @@ public class CourseHandler {
     }
 
     public Course getCourseByID(String courseID) {
-        return map.get(courseID.toLowerCase());
+        return map.get(courseID);
     }
 
 }

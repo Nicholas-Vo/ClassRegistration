@@ -12,7 +12,7 @@ public class RemoveCourse extends ProgramCommand {
     @Override
     public void execute(User user, String[] params) {
         Student student = program.getStudent(user.getUsername());
-        CourseHandler handler = new CourseHandler();
+        CourseHandler handler = program.getCourseHandler();
 
         if (params.length == 0) {
             System.out.println("Command usage: add <courseID>");
@@ -32,13 +32,6 @@ public class RemoveCourse extends ProgramCommand {
             System.out.println("You're not enrolled in that course.");
             return;
         }
-
-        student.getCourses().forEach(aCourse -> {
-            if (aCourse.getID().equalsIgnoreCase(courseID)) {
-                student.removeCourse(course);
-            }
-
-        });
 
         student.removeCourse(course);
         System.out.println("Successfully removed " + course.getID() + " from your course list.");

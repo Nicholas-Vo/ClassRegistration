@@ -1,6 +1,7 @@
 package edu.illinoisstate.it296;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -41,9 +42,9 @@ public class Student extends User {
 
     /**
      * Gets the Student's courses
-     * @return a HashSet of the student's courses.
+     * @return a copied HashSet of the student's courses.
      */
-    public Set<Course> getCourses() { return courses; }
+    public Set<Course> getCourses() { return Set.copyOf(courses); }
 
     /**
      * Determine if Student is enrolled in any courses.

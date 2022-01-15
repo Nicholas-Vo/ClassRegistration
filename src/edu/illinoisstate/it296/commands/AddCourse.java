@@ -12,7 +12,7 @@ public class AddCourse extends ProgramCommand {
     @Override
     public void execute(User user, String[] params) {
         Student student = program.getStudent(user.getUsername());
-        CourseHandler handler = new CourseHandler();
+        CourseHandler handler = program.getCourseHandler();
 
         if (params.length == 0) {
             System.out.println("Command usage: add <courseID>");
@@ -22,7 +22,7 @@ public class AddCourse extends ProgramCommand {
         String courseID = params[0];
 
         if (handler.getCourseByID(courseID.toLowerCase()) == null) {
-            System.out.println(courseID + " is not a valid course.");
+            System.out.println(courseID + " is not a valid course ID.");
             return;
         }
 
