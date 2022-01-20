@@ -3,7 +3,7 @@ package edu.illinoisstate.it296.utils;
 public class Security {
 
     public static boolean isValidUsername(String input) {
-        return input.length() > 3 && input.length() < 12;
+        return input.length() > 3 && input.length() < 16;
     }
 
     public static double validateGPA(String input) {

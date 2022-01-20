@@ -2,10 +2,6 @@ package edu.illinoisstate.it296.commands;
 
 import edu.illinoisstate.it296.*;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 public class ListCourses extends ProgramCommand {
 
     public ListCourses(ClassRegistration program) {

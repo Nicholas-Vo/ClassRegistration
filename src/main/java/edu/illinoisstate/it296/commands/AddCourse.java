@@ -1,10 +1,14 @@
 package edu.illinoisstate.it296.commands;
 
 import edu.illinoisstate.it296.*;
-import edu.illinoisstate.it296.utils.CourseHandler;
+import edu.illinoisstate.it296.CourseHandler;
 
 public class AddCourse extends ProgramCommand {
 
+    /**
+     * Creates a new AddCourse object
+     * @param program an instance of the ClassRegistration program
+     */
     public AddCourse(ClassRegistration program) {
         super(program, "add");
     }
@@ -21,7 +25,7 @@ public class AddCourse extends ProgramCommand {
 
         String courseID = params[0];
 
-        if (handler.getCourseByID(courseID.toLowerCase()) == null) {
+        if (handler.getCourseByID(courseID) == null) {
             System.out.println(courseID + " is not a valid course ID.");
             return;
         }

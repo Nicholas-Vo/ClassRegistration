@@ -4,18 +4,18 @@ package edu.illinoisstate.it296;
  * Represents a course at Illinois State University.
  */
 public class Course {
-    private final String name;
-    private final String id;
-    private final double gpaRequirement;
-    private final double creditHours;
+    private String id;
+    private String name;
+    private double gpaRequirement;
+    private double credits;
 
     /**
      * Creates a new Course with the given name, courseID, and credit hours.
      */
-    public Course(String name, String id, double creditHours, double gpaRequirement) {
+    public Course(String name, String id, double credits, double gpaRequirement) {
         this.name = name;
         this.id = id;
-        this.creditHours = creditHours;
+        this.credits = credits;
         this.gpaRequirement = gpaRequirement;
     }
 
@@ -27,6 +27,8 @@ public class Course {
         return name;
     }
 
+    public void setName(String name) {this.name = name; }
+
     /**
      * Gets the Course's courseID.
      * @return this Course's course ID.
@@ -34,6 +36,8 @@ public class Course {
     public String getID() {
         return id;
     }
+
+    public void setID(String id) {this.id = id; };
 
     /**
      * Gets the Course's GPA requirement to enroll.
@@ -43,12 +47,18 @@ public class Course {
         return gpaRequirement;
     }
 
+    public void setGpaReq(double req) { gpaRequirement = req; }
+
     /**
      * Gets the Course's credit hours.
      * @return this Course's credit hours.
      */
     public double getCredits() {
-        return creditHours;
+        return credits;
+    }
+
+    public void setCredits(double credits) {
+        this.credits = credits;
     }
 
     /**
@@ -56,6 +66,6 @@ public class Course {
      * @return the course in String form.
      */
     public String toString() {
-        return id + " - " + name + "\nCredit hours: " + creditHours;
+        return id + " - " + name + "\nCredit hours: " + credits;
     }
 }

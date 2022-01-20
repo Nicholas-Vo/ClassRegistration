@@ -1,7 +1,6 @@
 package edu.illinoisstate.it296;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -13,7 +12,7 @@ public class Student extends User {
     private double gpa = 0;
 
     /**
-     * Creates a new Student with the given username, course list, and GPA.
+     * Creates a new Student with the given username
      */
     public Student(String username) {
         super(username);
@@ -53,5 +52,16 @@ public class Student extends User {
     public boolean inAnyCourse() { return courses.size() > 0; }
 
     public boolean enrolledIn(Course course) { return courses.contains(course); }
+
+    /**
+     * Prints out a String representation of the Student object
+     * @return a String representation of the Student object
+     */
+    @Override
+    public String toString() {
+        return "Username: " + getUsername()
+                + "\nEnrolled in " + getCourses().size() + " courses."
+                + "\nGPA: " + gpa;
+    }
 
 }

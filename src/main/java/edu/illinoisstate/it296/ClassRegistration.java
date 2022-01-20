@@ -4,8 +4,9 @@ import edu.illinoisstate.it296.commands.AddCourse;
 import edu.illinoisstate.it296.commands.DisplayMenu;
 import edu.illinoisstate.it296.commands.ListCourses;
 import edu.illinoisstate.it296.commands.RemoveCourse;
-import edu.illinoisstate.it296.utils.CourseHandler;
+import edu.illinoisstate.it296.utils.Logger;
 import edu.illinoisstate.it296.utils.Security;
+import org.yaml.snakeyaml.Yaml;
 
 import java.util.*;
 
@@ -13,14 +14,17 @@ import java.util.*;
 public class ClassRegistration {
     private final List<ProgramCommand> commands = new ArrayList<>();
     private final Map<String, Student> studentMap = new HashMap<>();
-    private final CourseHandler handler = new CourseHandler();
+    private final Logger logger = new Logger();
+    private CourseHandler handler;
     boolean shouldRun = true;
 
     public void execute() {
+        handler = new CourseHandler();
+
         commands.add(new AddCourse(this));
+        commands.add(new RemoveCourse(this));
         commands.add(new ListCourses(this));
         commands.add(new DisplayMenu(this));
-        commands.add(new RemoveCourse(this));
 
         System.out.println("Enter your username: ");
 
@@ -46,8 +50,8 @@ public class ClassRegistration {
         }
 
         Student user = getStudent(username);
-        user.setGPA(gpa);
 
+        user.setGPA(gpa);
         displayProgramMenu(user);
 
         String[] params = gatherParams(scanner);
@@ -64,6 +68,12 @@ public class ClassRegistration {
 
     }
 
+    /**
+     * Returns a String array of any parameters User entered
+     *
+     * @param scanner a Scanner object
+     * @return params a String array of parameters
+     */
     private String[] gatherParams(Scanner scanner) {
         String[] params;
         String nextLine = scanner.nextLine();
@@ -71,13 +81,42 @@ public class ClassRegistration {
         return params;
     }
 
-    public CourseHandler getCourseHandler() {return handler; }
+    /**
+     * Get the instance of the course handler object
+     *
+     * @return handler - the course handler object
+     */
+    public CourseHandler getCourseHandler() {
+        return handler;
+    }
+
+    /**
+     * Get the instance of the program logger
+     *
+     * @return logger - the logger object
+     */
+    public Logger getProgramLogger() {
+        return logger;
+    }
+
+    public List<Student> getOnlineStudents() {
+        if (studentMap.isEmpty()) {
+            return List.of();
+        }
+        return new ArrayList<>(studentMap.values());
+    }
 
     public void displayProgramMenu(User user) {
         System.out.println("------ " + "Class Registration for " + user.getUsername() + " ------");
         commands.forEach(cmd -> System.out.println("> " + cmd.description()));
     }
 
+    /**
+     * get a Student object from the HashMap given a username; if none exists, create one
+     *
+     * @param username the User's username, the Key value for the HashMap
+     * @return a Student object
+     */
     public Student getStudent(String username) {
         studentMap.putIfAbsent(username, new Student(username));
         return studentMap.get(username);

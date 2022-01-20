@@ -1,7 +1,4 @@
-package edu.illinoisstate.it296.utils;
-
-import edu.illinoisstate.it296.Course;
-
+package edu.illinoisstate.it296;
 import java.util.HashMap;
 import java.util.Map;
 

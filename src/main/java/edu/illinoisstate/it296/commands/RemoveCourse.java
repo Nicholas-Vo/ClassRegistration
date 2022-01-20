@@ -1,7 +1,11 @@
 package edu.illinoisstate.it296.commands;
 
-import edu.illinoisstate.it296.*;
-import edu.illinoisstate.it296.utils.CourseHandler;
+import edu.illinoisstate.it296.ClassRegistration;
+import edu.illinoisstate.it296.Course;
+import edu.illinoisstate.it296.CourseHandler;
+import edu.illinoisstate.it296.ProgramCommand;
+import edu.illinoisstate.it296.Student;
+import edu.illinoisstate.it296.User;
 
 public class RemoveCourse extends ProgramCommand {
 
@@ -15,7 +19,7 @@ public class RemoveCourse extends ProgramCommand {
         CourseHandler handler = program.getCourseHandler();
 
         if (params.length == 0) {
-            System.out.println("Command usage: add <courseID>");
+            System.out.println("Command usage: remove <courseID>");
             return;
         }
 
