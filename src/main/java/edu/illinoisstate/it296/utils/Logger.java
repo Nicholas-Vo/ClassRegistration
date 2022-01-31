@@ -12,12 +12,28 @@ import java.util.Date;
  */
 public class Logger {
 
-    public boolean logCommand(String message) {
+    public boolean info(String message) {
         try {
+
+            /*
+            Non-complaint example: return value of createNewFile() is ignored
+             */
+//            File commandFile = new File("commands.txt");
+//
+//            if (!commandFile.exists()) {
+//                commandFile.createNewFile();
+//            }
+
+            /*
+            Compliant example
+             */
             File commandFile = new File("commands.txt");
 
             if (!commandFile.exists()) {
-                commandFile.createNewFile();
+                if (!commandFile.createNewFile()) {
+                    System.out.println("Failed to create the commands.txt file.");
+                    return true;
+                }
             }
 
             FileWriter writer = new FileWriter(commandFile, true);

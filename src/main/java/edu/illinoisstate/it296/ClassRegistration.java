@@ -6,7 +6,6 @@ import edu.illinoisstate.it296.commands.ListCourses;
 import edu.illinoisstate.it296.commands.RemoveCourse;
 import edu.illinoisstate.it296.utils.Logger;
 import edu.illinoisstate.it296.utils.Security;
-import org.yaml.snakeyaml.Yaml;
 
 import java.util.*;
 
@@ -95,7 +94,7 @@ public class ClassRegistration {
      *
      * @return logger - the logger object
      */
-    public Logger getProgramLogger() {
+    public Logger logger() {
         return logger;
     }
 
@@ -107,7 +106,7 @@ public class ClassRegistration {
     }
 
     public void displayProgramMenu(User user) {
-        System.out.println("------ " + "Class Registration for " + user.getUsername() + " ------");
+        System.out.println("------ " + "Class Registration for " + user.getName() + " ------");
         commands.forEach(cmd -> System.out.println("> " + cmd.description()));
     }
 
@@ -122,4 +121,18 @@ public class ClassRegistration {
         return studentMap.get(username);
     }
 
+//    /*
+//    Non-compliant example
+//     */
+//    public Student getStudentNonCompliant(String username) {
+//        return studentMap.get(username);
+//    }
+//
+//    /*
+//    Non-compliant example using assertion keyword
+//     */
+//    public Student getStudentNonCompliantAssertion(String username) {
+//        assert studentMap.get(username) != null;
+//        return studentMap.get(username);
+//    }
 }

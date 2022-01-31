@@ -17,7 +17,7 @@ public class User {
      * Gets the User's username.
      * @return this User's username.
      */
-    public String getUsername() { return username; }
+    public String getName() { return username; }
 
     /**
      * Determine if the User is an admin

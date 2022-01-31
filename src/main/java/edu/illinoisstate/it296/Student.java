@@ -59,7 +59,7 @@ public class Student extends User {
      */
     @Override
     public String toString() {
-        return "Username: " + getUsername()
+        return "Username: " + getName()
                 + "\nEnrolled in " + getCourses().size() + " courses."
                 + "\nGPA: " + gpa;
     }

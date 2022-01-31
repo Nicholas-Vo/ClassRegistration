@@ -10,7 +10,7 @@ public class ListCourses extends ProgramCommand {
 
     @Override
     public void execute(User user, String[] params) {
-        Student student = program.getStudent(user.getUsername());
+        Student student = program.getStudent(user.getName());
 
         if (!student.inAnyCourse()) {
             System.out.println("You aren't enrolled in any courses.");

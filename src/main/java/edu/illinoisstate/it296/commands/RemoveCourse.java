@@ -15,7 +15,7 @@ public class RemoveCourse extends ProgramCommand {
 
     @Override
     public void execute(User user, String[] params) {
-        Student student = program.getStudent(user.getUsername());
+        Student student = program.getStudent(user.getName());
         CourseHandler handler = program.getCourseHandler();
 
         if (params.length == 0) {
