@@ -4,11 +4,11 @@ Written for IT355 by Nick V., this command line Java program allows a student to
 
 # Program structure
 
-ClassRegistration: The main class
-CourseHandler: This is where courses are loaded into the program
-ProgramCommand: Abstract class to represent a user command
-Security: Contains a few validation methods
-Logger: Contains a logging method and the createFile() method
+- ClassRegistration: The main class. Executes the program and contains helper methods
+- CourseHandler: This is where courses are loaded into the program
+- ProgramCommand: Abstract class to represent a user command
+- Security: Contains a few validation methods
+- Logger: Contains a logging method and the createFile() method
 
 # Program Menu
 
